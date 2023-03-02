@@ -1,0 +1,14 @@
+---
+- hosts: all
+  tasks:
+    - name: Install required packages
+      dnf:
+        name: '{{ item }}'
+        state: latest
+        update_cache: True
+      with_items:
+        - dnf-plugins-core
+        - git
+        - glibc-common
+        - glibc-locale-source
+        - glibc-langpack-en

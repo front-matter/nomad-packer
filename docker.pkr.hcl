@@ -10,6 +10,7 @@ packer {
 source "docker" "almalinux" {
   image       = "almalinux:9"
   commit      = true
+  run_command = ["-d", "-i", "-t", "--entrypoint=/bin/bash", "{{.Image}}"]
 }
 
 build {
@@ -18,9 +19,20 @@ build {
     "source.docker.almalinux"
   ]
 
+  provisioner "shell" {
+    inline = [
+      "dnf upgrade --refresh -y",
+      "dnf install -y ansible-core"
+    ]
+  }
+
+  provisioner "ansible-local" {
+      playbook_file = "./ansible/playbooks/almalinux.yml"
+    }
+
   post-processor "docker-tag" {
     repository = "front-matter/inveniordm"
-    tags       = ["0.0.1"]
+    tags       = ["latest"]
     only       = ["docker.almalinux"]
   }
 }
