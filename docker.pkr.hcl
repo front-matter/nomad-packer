@@ -13,14 +13,14 @@ source "docker" "almalinux" {
 }
 
 build {
-  name = "inveniordm"
+  name = "front-matter/inveniordm"
   sources = [
     "source.docker.almalinux"
   ]
 
   post-processor "docker-tag" {
     repository = "front-matter/inveniordm"
-    tags       = ["almalinux9"]
-    only       = ["docker.ubuntu"]
+    tags       = ["almalinux9", "0.11.0"]
+    only       = ["docker.almalinux"]
   }
 }
