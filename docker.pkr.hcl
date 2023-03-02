@@ -20,7 +20,7 @@ build {
 
   post-processor "docker-tag" {
     repository = "front-matter/inveniordm"
-    tags       = ["almalinux9", "0.11.0"]
+    tags       = ["0.0.1"]
     only       = ["docker.almalinux"]
   }
 }
