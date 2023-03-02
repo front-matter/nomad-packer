@@ -2,7 +2,7 @@
 - hosts: all
   tasks:
     - name: Install required packages
-      dnf:
+      package:
         name: '{{ item }}'
         state: latest
         update_cache: True
