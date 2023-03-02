@@ -1,0 +1,29 @@
+name: Build
+
+on:
+  - push
+
+jobs:
+  packer:
+    runs-on: ubuntu-latest
+    name: Run Packer
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup `packer`
+        uses: hashicorp/setup-packer@main
+        id: setup
+        with:
+          version: "1.8.6"
+
+      - name: Run `packer init`
+        id: init
+        run: "packer init ./docker.pkr.hcl"
+
+      - name: Run `packer validate`
+        id: validate
+        run: "packer validate ./docker.pkr.hcl"
+
+      - name: Run `packer build`
+        run: "packer build ./docker.pkr.hcl"
