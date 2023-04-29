@@ -1,2 +1,3 @@
 docker
 .DS_Store
+nomad.auto.pkrvars.hcl
