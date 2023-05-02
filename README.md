@@ -1,2 +1,2 @@
-# packer-invenio-rdm
+# nomad-packer
  
